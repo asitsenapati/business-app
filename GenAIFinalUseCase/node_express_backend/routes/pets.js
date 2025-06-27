@@ -1,0 +1,27 @@
+const express = require('express');
+const router = express.Router();
+const store = require('../data/store');
+
+router.post('/add', (req, res) => {
+  const { userId, name, type } = req.body;
+  const pet = { id: Date.now(), userId, name, type };
+  store.pets.push(pet);
+  res.json({ message: 'Pet added', pet });
+});
+
+router.put('/update/:id', (req, res) => {
+  const pet = store.pets.find(p => p.id == req.params.id);
+  if (pet) {
+    Object.assign(pet, req.body);
+    res.json({ message: 'Pet updated', pet });
+  } else {
+    res.status(404).json({ message: 'Not found' });
+  }
+});
+
+router.delete('/delete/:id', (req, res) => {
+  store.pets = store.pets.filter(p => p.id != req.params.id);
+  res.json({ message: 'Deleted' });
+});
+
+module.exports = router;
