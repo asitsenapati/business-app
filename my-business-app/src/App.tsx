@@ -10,13 +10,24 @@ import Scheduling from './components/Scheduling'
 import FeedbackSupport from './components/FeedbackSupport'
 import AdminDashboard from './components/AdminDashboard'
 import Login from './components/Login'
-import './App.css'
+import Footer from './components/Footer'
+import Services from './components/Services'
 
 function App() {
   return (
     <BrowserRouter>
     <Navbar />
-    <Container maxWidth="md" sx={{ mt: 10 }}>
+    <Container
+  maxWidth={false}
+  disableGutters
+  sx={{
+    width: '100vw',
+    mx: 0,
+    mt: 0,
+    p: 0,
+    boxSizing: 'border-box',
+  }}
+>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />   
@@ -26,8 +37,10 @@ function App() {
         <Route path="/support" element={<FeedbackSupport />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/services" element={<Services />} />
       </Routes>
       </Container>
+      <Footer />
     </BrowserRouter>
   )
 }

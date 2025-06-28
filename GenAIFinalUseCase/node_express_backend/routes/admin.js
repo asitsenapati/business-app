@@ -9,7 +9,9 @@ router.get('/users', (req, res) => {
 router.get('/reports', (req, res) => {
   res.json({
     totalUsers: store.users.length,
+    totalPets: store.pets.length,
     totalPayments: store.payments.length,
+    totalSchedules: store.schedules.length,
     totalFamilyMembers: store.familyMembers.length,
   });
 });
